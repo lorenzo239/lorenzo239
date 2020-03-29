@@ -18,8 +18,8 @@ class action_class {
   	std::string action_name;
   	int goal;
   	int progress;
-	
-	int one_click;
+	int speed=0;
+	int somma=0;
 
 	public:
 		action_class(std::string name) :
@@ -38,12 +38,16 @@ class action_class {
 		void executeCB(const ros_action::demoGoalConstPtr &goal) {
 			if(!as.isActive() || as.isPreemptRequested()) return;
 			
-			one_click=60/(goal->velocity);                //goal-> velocità/6 sono rpm			
-			ros::Rate rate(5);
+
+			ros::Rate rate(10);
                         
+
 			ROS_INFO("%s is processing the goal %d", action_name.c_str(), goal->pos_end);
+
 			for(progress = goal->pos_start ; progress <= goal->pos_end; progress++){
-				//Check for ros
+				
+				progress--;
+				
 				if (!ros::ok()) {
 					result.pos_finish = progress;
 					as.setAborted(result,"I failed !");
@@ -54,20 +58,42 @@ class action_class {
 				if(!as.isActive() || as.isPreemptRequested()){
 					return;
 				}	
+				
+			somma=0;
+			for(int i=0; i<speed;i++){
+			somma=somma+i;
+			}
+
+			if (somma>=goal->pos_end-progress && speed>=1){
+			speed--;
+			}
+
+			else{
+			speed++;
+				if (speed>goal->velocity){
+				speed=speed-1;
+				}
+			}
+			
+			
+
+				progress=progress+speed;
 
 				if(goal->pos_end <= progress) {
-					ROS_INFO("%s Succeeded at getting to goal %d", action_name.c_str(), goal->pos_end);
+					ROS_INFO("Getting to goal %d with velocity %d", progress, speed);
 					result.pos_finish = progress;
 					as.setSucceeded(result);
 				}
 				else {
 					feedback.current_pos = progress;
-					ROS_INFO("Setting to goal %d / %d",feedback.current_pos,goal->pos_end);
+					ROS_INFO("Setting to goal %d / %d   velocity -> %d",feedback.current_pos,goal->pos_end,speed);
 					
 					as.publishFeedback(feedback);
 			}
-		
-			sleep(one_click);
+			
+			
+
+			rate.sleep();
 		}	
   }
 };

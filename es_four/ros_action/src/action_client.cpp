@@ -58,7 +58,7 @@ std::cin>>times;
     actionlib::SimpleClientGoalState state = ac.getState();
     ROS_INFO("Action finished: %s",state.toString().c_str());
     //Preempting the process
-		ac.cancelGoal();
+	ac.cancelGoal();
 
   }
   else
