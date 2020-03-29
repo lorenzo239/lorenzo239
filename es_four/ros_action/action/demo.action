@@ -1,0 +1,10 @@
+#goal definition
+int32 pos_start
+int32 pos_end
+int32 velocity
+---
+#result definition
+int32 pos_finish
+---
+#feedback
+int32 current_pos
