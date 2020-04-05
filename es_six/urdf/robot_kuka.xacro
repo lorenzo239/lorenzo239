@@ -1,0 +1,219 @@
+<?xml version="1.0"?>
+
+ 
+
+<robot name="robot_kuka" xmlns:xacro="http://wiki.ros.org/xacro">
+    <xacro:include filename="$(find es_six)/urdf/robot_kuka_macro.xacro" />
+
+<xacro:base_link_macro 
+	base_link_name="base_link">
+</xacro:base_link_macro>
+
+<xacro:kuka_joint
+            name="joint0"
+            type="fixed"
+            parent="base_link"
+            child="link1">
+            <origin xyz="0 0 0" />
+            <axis xyz="0 0 1"/>
+	   <limit effort="0" velocity="0" lower="0" upper="0"/>
+
+</xacro:kuka_joint>
+
+<xacro:kuka_link 
+            name="link1">
+            <geometry>
+                <cylinder length="0.2" radius="0.05"/>
+            </geometry>
+            <origin xyz="0 0 0.1" rpy="0 0 0"/>
+	    <material name="blue">
+              <color rgba="0 0 1 1"/>
+            </material>
+</xacro:kuka_link>
+
+ 
+
+<xacro:kuka_joint
+            name="joint1"
+            type="revolute"
+            parent="link1"
+            child="link2">
+            <origin xyz="0 0 0.2" />
+            <axis xyz="0 0 1"/>
+	   <limit effort="176" velocity="0.1" lower="-2.96" upper="2.96"/>
+
+</xacro:kuka_joint>
+
+ 
+
+<xacro:kuka_link 
+            name="link2">
+            <geometry>
+                <cylinder length="0.2" radius="0.05"/>
+            </geometry>
+
+            <origin xyz="0 0 0.1" rpy="0 0 0"/>
+	    <material name="yellow">
+              <color rgba="0.8 0.8 0 1"/>
+            </material>
+</xacro:kuka_link>
+
+ 
+
+<xacro:kuka_joint
+            name="joint2"
+            type="revolute"
+            parent="link2"
+            child="link3">
+            <origin xyz="0 0 0.2" />
+            <axis xyz="0 1 0"/>
+ <limit effort="176" velocity="0.1" lower="-2.06" upper="2.06"/>
+</xacro:kuka_joint>
+
+
+
+<xacro:kuka_link 
+            name="link3">
+            <geometry>
+                <cylinder length="0.2" radius="0.05"/>
+            </geometry>
+
+            <origin xyz="0 0 0.1" rpy="0 0 0"/>
+	    <material name="red">
+              <color rgba="0 0 0 1"/>
+            </material>
+</xacro:kuka_link>
+
+ 
+
+<xacro:kuka_joint
+            name="joint3"
+            type="revolute"
+            parent="link3"
+            child="link4">
+            <origin xyz="0 0 0.2" />
+            <axis xyz="0 0 1"/>
+ <limit effort="110" velocity="0.1" lower="-2.96" upper="2.96"/>
+</xacro:kuka_joint>
+
+ 
+
+<xacro:kuka_link 
+            name="link4">
+            <geometry>
+                <cylinder length="0.2" radius="0.05"/>
+            </geometry>
+
+            <origin xyz="0 0 0.1" rpy="0 0 0"/>
+	    <material name="yellow">
+              <color rgba="0.8 0.8 0 1"/>
+            </material>
+</xacro:kuka_link>
+
+ 
+
+<xacro:kuka_joint
+            name="joint4"
+            type="revolute"
+            parent="link4"
+            child="link5">
+            <origin xyz="0 0 0.2" />
+            <axis xyz="0 -1 0"/>
+ <limit effort="110" velocity="0.1" lower="-2.09" upper="2.09"/>
+</xacro:kuka_joint>
+
+ 
+
+<xacro:kuka_link 
+            name="link5">
+            <geometry>
+                <cylinder length="0.2" radius="0.05"/>
+            </geometry>
+
+            <origin xyz="0 0 0.1" rpy="0 0 0"/>
+	    <material name="green">
+              <color rgba="1 0 0 1"/>
+            </material>
+</xacro:kuka_link>
+
+ 
+
+<xacro:kuka_joint
+            name="joint5"
+            type="revolute"
+            parent="link5"
+            child="link6">
+            <origin xyz="0 0 0.2" />
+            <axis xyz="0 0 1"/>
+ <limit effort="110" velocity="0.1" lower="-2.96" upper="2.96"/>
+</xacro:kuka_joint>
+
+ 
+
+<xacro:kuka_link 
+            name="link6">
+            <geometry>
+                <cylinder length="0.2" radius="0.05"/>
+            </geometry>
+	  
+            <origin xyz="0 0 0.1" rpy="0 0 0"/>
+	    <material name="yellow">
+              <color rgba="0.8 0.8 0 1"/>
+            </material>
+</xacro:kuka_link>
+
+ 
+
+<xacro:kuka_joint
+            name="joint6"
+            type="revolute"
+            parent="link6"
+            child="link7">
+            <origin xyz="0 0 0.2" />
+            <axis xyz="0 1 0"/>
+ <limit effort="40" velocity="0.1" lower="-2.09" upper="2.09"/>
+</xacro:kuka_joint>
+
+ 
+
+<xacro:kuka_link 
+            name="link7">
+            <geometry>
+                <cylinder length="0.2" radius="0.05"/>
+            </geometry>
+	  
+            <origin xyz="0 0 0.1" rpy="0 0 0"/>
+	    <material name="blue">
+              <color rgba="0 0 1 1"/>
+            </material>
+</xacro:kuka_link>
+
+
+<xacro:kuka_joint
+            name="joint7"
+            type="revolute"
+            parent="link7"
+            child="end_effector">
+            <origin xyz="0 0 0.2" />
+            <axis xyz="0 0 1"/>
+ <limit effort="40" velocity="0.1" lower="-3.05" upper="3.05"/>
+</xacro:kuka_joint>
+
+ 
+
+<xacro:kuka_link 
+            name="end_effector">
+            <geometry>
+                <cylinder length="0.2" radius="0.05"/>
+            </geometry>
+
+            <origin xyz="0 0 0.1" rpy="0 0 0"/>
+	    <material name="yellow">
+              <color rgba="0.8 0.8 0 1"/>
+            </material>
+</xacro:kuka_link>
+
+ 
+
+
+</robot>

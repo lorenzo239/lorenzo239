@@ -1,0 +1,62 @@
+<?xml version="1.0"?>
+  <robot name="robot_kuka_macro" xmlns:xacro="http://wiki.ros.org/xacro">
+
+
+	<xacro:macro name="base_link_macro" params="base_link_name">
+		<link name="${base_link_name}">
+			<visual>
+				<geometry>
+					<box size="0.6 0.6 0.02"/>
+				</geometry>
+				<origin rpy="0 0 0" xyz="0 0 0"/>
+					<material name="white">
+						<color rgba="1 1 1 1"/>
+					</material>
+			</visual>			
+		</link>
+	</xacro:macro>
+
+
+
+
+
+    <xacro:macro name="kuka_link" params="name *geometry *origin *material">
+        <link name="${name}">
+            <visual>
+                <xacro:insert_block name="geometry" />
+                <xacro:insert_block name="origin" />    
+		<xacro:insert_block name="material" />           
+            
+          </visual>
+
+          <collision>
+                <xacro:insert_block name="geometry" />
+                <xacro:insert_block name="origin" />        
+            </collision>
+
+            
+      </link>
+    </xacro:macro>    
+
+ 
+
+
+    <xacro:macro name="kuka_joint" params="name type parent child *origin *axis *limit">
+        <joint name="${name}" type="${type}">
+            <parent link="${parent}" />
+            <child link="${child}" />
+                   <xacro:insert_block name="origin" />
+                <xacro:insert_block name="axis" />
+		<xacro:insert_block name="limit" />
+        
+        <dynamics damping="50" friction="1"/>
+        </joint>
+    </xacro:macro>
+
+ 
+
+    
+
+ 
+
+</robot>
