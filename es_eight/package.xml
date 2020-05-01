@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<package>
+  <name>lbr_iiwa_description</name>
+  <version>0.0.0</version>
+  <description>The rrbot_description package</description>
+
+  <maintainer email="robert.krug@oru.se">Robert Krug</maintainer>
+
+  <license>BSD</license>
+
+  <author email="robert.krug@oru.se">Robert Krug</author>
+
+  <buildtool_depend>catkin</buildtool_depend>
+  <build_depend>geometry_msgs</build_depend>
+  <build_depend>kdl_parser</build_depend>
+  <build_depend>kdl_ros_control</build_depend>
+  <build_depend>roscpp</build_depend>
+  <build_depend>sensor_msgs</build_depend>
+  <run_depend>kdl_parser</run_depend>
+
+  <export>
+  </export>
+</package>
