@@ -177,5 +177,5 @@ endif()
 
 include_directories(${GAZEBO_INCLUDE_DIRS})
 link_directories(${GAZEBO_LIBRARY_DIRS})
-add_library(CLIK SHARED src/plugin/CLIK_plugin.cpp)
+add_library(CLIK SHARED src/plugin/CLIK.cpp)
 target_link_libraries(CLIK ${GAZEBO_LIBRARIES} ${Boost_LIBRARIES} ${catkin_LIBRARIES})
