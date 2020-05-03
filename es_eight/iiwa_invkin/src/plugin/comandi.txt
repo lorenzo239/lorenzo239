@@ -1,0 +1,2 @@
+rostopic pub destination geometry_msgs/Point 0.7 0.7 0.2
+
